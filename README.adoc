@@ -29,22 +29,24 @@ image:images/owca-dashboard.png[]
 	$ knife client list
 	default-validator
 
-== Upload Chef Cookbook
+== Upload Chef Cookbooks
+
+Upload Chef Client and Audit cookbook. Chef nodes, also the Kubernetes worker nodes, executes these cookbooks from the OWCA server based upon their checkin time.
 
 . Download all dependencies:
 
   berks install
 
-. Upload dependencies to the Chef server:
+. Upload cookbooks and dependencies to the Chef server:
 
   berks upload
 
 . By default, Apache 2 is included in the recipe uploaded to the Chef server. This is not required to be installed on the worker nodes. Remove `apache2` recipe from `<owca-server>-repo/roles/opsworks-example-role.rb`.
-. Create role:
+. Create role for the cookbooks execution:
 
   knife role from file roles/opsworks-example-role.rb
 
-. In Chef UI, `Compliance`, `Profile Store, install `DevSec SSH Baseline` profile
+. In Chef UI, `Compliance`, `Profile Store`, `Available`, search for `DevSec SSH Baseline` profile and click on `Get`.
 . In `<owca-server>-repo/site-cookbooks/opsworks-audit/attributes`, check this is the same profile that is defined.
 
 == Create Kubernetes Cluster
