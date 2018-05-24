@@ -1,0 +1,81 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2018-05-05T09:29:42Z
+  name: chef.k8s.local
+spec:
+  api:
+    dns: {}
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://kubernetes-aws-io/chef.k8s.local
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-eu-west-1a
+      name: a
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-eu-west-1a
+      name: a
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  additionalPolicies:
+    node: |
+      [
+        {
+          "Effect": "Allow",
+          "Action": ["opsworks-cm:*"],
+          "Resource": ["*"]
+        },
+        {
+          "Effect": "Allow",
+          "Action": ["cloudformation:*"],
+          "Resource": ["*"]
+        },
+        {
+          "Effect": "Allow",
+          "Resource": ["arn:aws:s3:::aws-opsworks-cm-*"],
+          "Action": [
+              "s3:AbortMultipartUpload",
+              "s3:DeleteObject",
+              "s3:GetObject",
+              "s3:ListAllMyBuckets",
+              "s3:ListBucket",
+              "s3:ListMultipartUploadParts",
+              "s3:PutObject"
+            ]
+        }
+            
+      ]
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.9.3
+  masterPublicName: api.chef.k8s.local
+  networkCIDR: 172.20.0.0/16
+  networking:
+    kubenet: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: eu-west-1a
+    type: Public
+    zone: eu-west-1a
+  - cidr: 172.20.64.0/19
+    name: eu-west-1b
+    type: Public
+    zone: eu-west-1b
+  - cidr: 172.20.96.0/19
+    name: eu-west-1c
+    type: Public
+    zone: eu-west-1c
+  topology:
+    dns:
+      type: Public
+    masters: public
+    nodes: public

@@ -58,6 +58,7 @@ image:images/owca-dashboard.png[]
   export KOPS_STATE_STORE=s3://kubernetes-aws-io
   aws s3 mb kops-config/$KOPS_STATE_STORE
 
+. Update `kops-config/chef.k8s.local.yaml` to replace `INSERT-YOUR-USERDATA-HERE` with user data from your OWCA Starter Kit.
 . Create a k8s cluster:
 
   export NAME=chef.k8s.local
@@ -98,8 +99,6 @@ image::images/chef-nodes-registration.png[]
 . Check that the nodes are non-compliant:
 +
 image::images/chef-nodes-compliance.png[]
-
-  
 
 
 = License Summary
