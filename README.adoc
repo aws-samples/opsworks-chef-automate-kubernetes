@@ -92,14 +92,31 @@ Upload Chef Client and Audit cookbook. Chef nodes, also the Kubernetes worker no
 
 == Show Kubernetes Nodes as Chef Nodes in OWCA Server
 
-. Open Chef Console
-. Check that the nodes are registered:
+. Open Chef Automate console
+. Check that the Kubernetes worker nodes are registered as Chef nodes:
 +
 image::images/chef-nodes-registration.png[]
 +
 . Check that the nodes are non-compliant:
 +
 image::images/chef-nodes-compliance.png[]
+
+== Fix the Compliance
+
+. Install the `ssh-hardening` cookbook with Berkshelf by editing the `Berksfile` in the root of the OpsWorks starter kit. Add the following line:
+
+  cookbook 'ssh-hardening'
+
+. Add this cookbook to the nodes run list by adding the following line to the `roles/opsworks-example-role.rb` file, in the `run_list()` section:
+
+  "recipe[ssh-hardening]"
+. Upload the changes back to the Chef Automate server:
+
+  berks install
+  berks upload
+  knife upload roles/opsworks-example-role.rb
+
+. Wait for the nodes to check in again.
 
 = License Summary
 
