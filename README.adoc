@@ -1,15 +1,15 @@
 :toc:
-= Compliance of Nodes in a Kubernetes Cluster using Chef
+= Compliance of Nodes in a Kubernetes Cluster using AWS OpsWorks for Chef Automate
 
-This repo will explain how you can check for compliance of worker nodes in a Kubernetes cluster using OpsWorks for Chef Automate.
+This repo will explain how you can check for compliance of worker nodes in a Kubernetes cluster using https://aws.amazon.com/opsworks/[AWS OpsWorks for Chef Automate] (OWCA).
 
 == Launch AWS OpsWorks for Chef Automate Server
 
-. Launch a Chef server using https://aws.amazon.com/opsworks/[AWS OpsWorks Chef Automate]: https://console.aws.amazon.com/opsworks/cm/home?owc=chefautomate&region=us-east-1#/chef/. Specify a name `my-chef-automate` and take rest as the default values.
+. Launch a Chef server using OWCA: https://console.aws.amazon.com/opsworks/cm/home?owc=chefautomate&region=us-east-1#/chef/. Specify a name and take rest as the default values.
 . Download Credentials and Starter Kit.
-.. Expand Starter Kit bundle, this is your Chef repo.
+.. Expand the Starter Kit bundle, this is your Chef repo.
 .. Credentials file is named `<owca-name>_credentials.csv`.
-. From the AWS Console, select the Chef server and login to OWCA Dashboard. Use the credentials downloaded earlier. Complete instructions at https://docs.aws.amazon.com/opsworks/latest/userguide/opscm-chef-dashboard.html. 
+. From the AWS Console, select the Chef server and login to the OWCA Dashboard. Use the credentials downloaded earlier.
 +
 image:images/owca-dashboard.png[]
 
