@@ -118,6 +118,6 @@ image::images/chef-nodes-compliance.png[]
 
 . Wait for the nodes to check in again.
 
-= License Summary
+== License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
