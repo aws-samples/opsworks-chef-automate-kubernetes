@@ -110,6 +110,7 @@ image::images/chef-nodes-compliance.png[]
 . Add this cookbook to the nodes run list by adding the following line to the `roles/opsworks-example-role.rb` file, in the `run_list()` section:
 
   "recipe[ssh-hardening]"
+
 . Upload the changes back to the Chef Automate server:
 
   berks install
